@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Title of the document</title>
+</head>
+
+<link rel="stylesheet" href="style.css" />
+
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Look4Events</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav" id="barraMenuTop">
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                <li><a asp-area="" asp-controller="Events" asp-action="Index">Events</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Prueba">Prueba</a></li>
+
+            </ul>
+            <partial name="_LoginPartial" />
+        </div>
+    </div>
+</nav>
+
+<div class="img-responsive" id="cabecera">
+    <div>
+        <a href=""><img class="img-responsive" src="http://bbkbootcamp.com/wp-content/uploads/2015/03/cropped-C4J_LOGO_512px_Prueba_1.png" /></a>
+    </div>
+    <div id="title">
+        <!-- <h1 class="title">Home</h1> -->
+    </div>
+</div>
+
+<!-- <div class="wrapper">
+        <header>
+            <svg viewBox="0 0 960 300">
+                <symbol id="s-text">
+                    <text text-anchor="middle" x="50%" y="80%">Look4Events</text>
+                </symbol>
+                <g class="g-ants">
+                    <use xlink:href="#s-text" class="text-copy"></use>
+                    <use xlink:href="#s-text" class="text-copy"></use>
+                    <use xlink:href="#s-text" class="text-copy"></use>
+                    <use xlink:href="#s-text" class="text-copy"></use>
+                    <use xlink:href="#s-text" class="text-copy"></use>
+                </g>
+            </svg>
+        </header>
+    </div> -->
+
+
+
+<!-- tabla responsive -->
+<div class="wrapper">
+    <header>
+        <h1>Búsqueda de eventos</h1>
+    </header>
+    <section class="columns">
+        <div class="column" id="buscarPorKeyWord">
+            <p>
+                <!-- <form role="search"> -->
+                    <div>
+                        <input type="search" id="keyword"
+                               placeholder="Buscar por keyword..."
+                               aria-label="Buscar en el contenido del sitio">
+                        <button class="botonBuscar" onclick="showEventsByKeywordShowPosition()">Buscar</button>
+                        <!-- <button class="botonBuscar" onclick="initMap()">Buscar</button> -->
+                    </div>
+                <!-- </form> -->
+            </p>
+        </div>
+        <div class="column" id="fechaEnCalendario">
+            <p id="fechaHoy"></p>
+            <p></p>
+            <p class="custom-select">
+                FROM: <input type="date" id="fechaIn" />TO: <input type="date" id="fechaFin" />
+                <button id="BuscarporFecha" onclick="searchByDateShowPosition()">Buscar</button>
+            </p>
+        </div>
+        <div class="column" id="buscarPorVista">
+            <label>
+                <input type="radio" onclick="listadoOn()" class="option-input radio" name="example" checked />
+                ver Listado<br />
+            </label>
+            <label>
+                <input type="radio" onclick="listadoOff()" class="option-input radio" name="example" />
+                ver Mapa<br />
+            </label>
+        </div>
+
+
+        <div class="column" id="buscarPorLugar">
+            <p id="filtroPorLugar">
+                <select>
+                    <option value="buscarEnBilbao">Bilbao</option>
+                </select>
+            </p>
+        </div>
+    </section>
+</div>
+
+
+
+<p id="location"></p>
+<div id="map" style="display:none;"></div>
+<!-- <div id="events"></div> -->
+<div id="listadooEvents">
+    <header>
+        <h1>Eventos:</h1>
+    </header>
+    <section id="event"></section>
+    <section id="events" class="columns"></section>
+    <section id="filaDetails" class="columns" style="display:none;"></section>
+</div>
+
+<!-- footer -->
+<footer>
+    <p>&copy; 2019 - Look4Events</p>
+</footer>
+
+
+<!-- <div>
+    <header>
+        <h2>Eventos: listado</h2>
+    </header>
+    <section id="filaResults" class="columns"></section>
+    <section id="filaDetails" class="columns" style="display:none;"></section>
+</div> -->
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+asp-fallback-test="window.jQuery"
+crossorigin="anonymous"
+integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+</script>
+<script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+crossorigin="anonymous"
+integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+</script>
+<script src="main.js"></script>
+
+</html>
