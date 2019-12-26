@@ -63,38 +63,52 @@ function showPosition(position) {
     });
 }
 
+
+/** BUSQUEDA CON PARAMETROS FECHA / DATE
+ * Inicializamos la fecha de "hoy" para la busqueda por fechas
+ * 
+ */
+Date.prototype.toDateInputValue = (function() {
+    var local = new Date(this);
+    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+    return local.toJSON().slice(0,10);
+});
+
+document.getElementById('fechaIn').value = new Date().toDateInputValue();
+document.getElementById('fechaFin').value = new Date().toDateInputValue();
+/*---- otra forma de hacer lo mismo, con jQuery -----
+$(document).ready( function() {
+    $('#fechaIn').val(new Date().toDateInputValue());
+})
+*/
+
 let fechaInicio = {};
 let fechaFin = {};
 let fechFin;
 let fechInicial;
+/**
+ * creamos variables para construir luego la url y hacer el REQUEST a la API:
+ */
 let hora = "T00:00:00Z";
 let StartDateTime = "&startDateTime=";
 let EndDateTime = "&endDateTime=";
+
 $('#fechaIn').on('click', function () {
-    let date = new Date($('#fechaInicio').val());
-    day = date.getDate();
-    month = date.getMonth() + 1;
-    year = date.getFullYear();
-    fechaInicio = { year: year, month: month, day: day };
-    fechInicial = fechaInicio.year + "-" + fechaInicio.month + "-" + fechaInicio.day;
+    fechaInicio = document.getElementById("fechaIn"); //cada vez (onclick) en el campo fecha/date 
 });
+
 $('#fechaFin').on('click', function () {
-    let date = new Date($('#fechaFinal').val());
-    day = date.getDate();
-    month = date.getMonth() + 1;
-    year = date.getFullYear();
-    fechaFin = { year: year, month: month, day: day };
-    fechFin = fechaFin.year + "-" + fechaFin.month + "-" + fechaFin.day;
+    fechaFin = document.getElementById("fechaFin");
 });
 
-
+//request a la API con los parametros que tengo, la localizacion
 function searchByDateShowPosition() {
     latlon = positionActual.coords.latitude + "," + positionActual.coords.longitude;
     radius = "&radius=50&unit=km"
     $.ajax({
         type: "GET",
         url: "https://app.ticketmaster.com/discovery/v2/events.json?apikey=h3I9tWkebYWN4j7RUCINFghyZEoQMjMi&latlong="
-            + latlon + radius + StartDateTime + fechInicial + hora + EndDateTime + fechFin + hora,
+            + latlon + radius + StartDateTime + fechaInicio.value + hora + EndDateTime + fechaFin.value + hora,
         async: true,
         dataType: "json",
         success: function (json) {
