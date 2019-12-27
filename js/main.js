@@ -7,6 +7,7 @@ let radius;
 let x;
 
 
+
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -32,6 +33,7 @@ function showError(error) {
             break;
     }
 }
+
 
 function showPosition(position) {
     console.log()
@@ -100,6 +102,12 @@ $('#fechaIn').on('click', function () {
 $('#fechaFin').on('click', function () {
     fechaFin = document.getElementById("fechaFin");
 });
+
+//footer
+var fecha = new Date();
+var anio = fecha. getFullYear();
+var YYYY = document.getElementById("footerText");
+YYYY.innerHTML= "&copy; "+anio;
 
 //request a la API con los parametros que tengo, la localizacion
 function searchByDateShowPosition() {
@@ -172,7 +180,7 @@ function showEventsByKeyword(events) {
         let elementoUrl = document.createElement("a");
         //divParaUrl.setAttribute("class", "urlTickets");
 
-
+        
         elementoUrl.setAttribute("href", UrlEvento);
         //elementoUrl.href = UrlEvento;
         elementoUrl.appendChild(textoEnlace);
