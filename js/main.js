@@ -776,8 +776,6 @@ function addMarker(map, event, events) {
         position: new google.maps.LatLng(event._embedded.venues[0].location.latitude, event._embedded.venues[0].location.longitude),
         animation: google.maps.Animation.DROP,
         map: map,
-        icon: '/images/free-map-marker-icon-green-darkerPEKE.png'
-
     });
     //marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
     let texto = '';
