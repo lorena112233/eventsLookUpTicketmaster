@@ -8,11 +8,10 @@ let x;
 
 
 function getLocation() {
+    x = document.getElementById("location");
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
-        console.log()
     } else {
-        let x = document.getElementById("location");
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
 }
