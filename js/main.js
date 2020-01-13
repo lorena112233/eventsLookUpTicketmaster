@@ -7,12 +7,12 @@ let radius;
 let x;
 
 
+
 function getLocation() {
+    x = document.getElementById("location");
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
-        console.log()
     } else {
-        let x = document.getElementById("location");
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
 }
@@ -32,6 +32,7 @@ function showError(error) {
             break;
     }
 }
+
 
 function showPosition(position) {
     console.log()
@@ -100,6 +101,12 @@ $('#fechaIn').on('click', function () {
 $('#fechaFin').on('click', function () {
     fechaFin = document.getElementById("fechaFin");
 });
+
+//footer
+var fecha = new Date();
+var anio = fecha. getFullYear();
+var YYYY = document.getElementById("footerText");
+YYYY.innerHTML= "&copy; "+anio;
 
 //request a la API con los parametros que tengo, la localizacion
 function searchByDateShowPosition() {
@@ -172,7 +179,7 @@ function showEventsByKeyword(events) {
         let elementoUrl = document.createElement("a");
         //divParaUrl.setAttribute("class", "urlTickets");
 
-
+        
         elementoUrl.setAttribute("href", UrlEvento);
         //elementoUrl.href = UrlEvento;
         elementoUrl.appendChild(textoEnlace);
@@ -777,8 +784,6 @@ function addMarker(map, event, events) {
         position: new google.maps.LatLng(event._embedded.venues[0].location.latitude, event._embedded.venues[0].location.longitude),
         animation: google.maps.Animation.DROP,
         map: map,
-        icon: '/images/free-map-marker-icon-green-darkerPEKE.png'
-
     });
     //marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
     let texto = '';
