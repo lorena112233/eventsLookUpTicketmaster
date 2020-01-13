@@ -51,8 +51,8 @@ function showPosition(position) {
         success: function (json) {
             console.log(json);
             let events = json._embedded.events;
-            // let e = document.getElementById("events");
-            // e.innerHTML = json.page.totalElements + " events found.<br/>";
+            let e = document.getElementById("events");
+            e.innerHTML = json.page.totalElements + " events found.<br/>";
             showEvents(events);
             positionActual = position;
             jsonSaved = json;
@@ -121,8 +121,8 @@ function searchByDateShowPosition() {
         success: function (json) {
             let events = json._embedded.events;
             console.log(events);
-            // let e = document.getElementById("events");
-            // e.innerHTML = json.page.totalElements + " events found.<br/>";
+            let e = document.getElementById("events");
+            e.innerHTML = json.page.totalElements + " events found.<br/>";
             showEventsByDate(events);
             jsonSaved = json;
             initMap(positionActual, events);
@@ -146,8 +146,8 @@ function showEventsByKeywordShowPosition() {
         success: function (json) {
             let events = json._embedded.events;
             console.log(events);
-            // let e = document.getElementById("events");
-            // e.innerHTML = json.page.totalElements + " events found.<br/>";
+            let e = document.getElementById("events");
+            e.innerHTML = json.page.totalElements + " events found.<br/>";
             showEventsByKeyword(events);
             jsonSaved = json;
             initMap(positionActual, events);
